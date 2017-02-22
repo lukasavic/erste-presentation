@@ -1,0 +1,50 @@
+.award-modal {
+    position: fixed;
+    width: 100%;
+    height: 100vh;
+    text-align: center;
+    z-index: 900;
+    transition: all 0.3s ease;
+    opacity: 0;
+    visibility: hidden;
+
+
+    &.-active {
+        opacity: 1;
+        visibility: visible;
+    }
+
+    .award-modal__inner {
+        background-color: rgba(0,0,0,0.5);
+        position: relative;
+        width: 100%;
+        height: 100vh;
+    }
+
+    .award-modal__position {
+        background-color: #fff;
+        display: inline-block;
+        padding: 30px;
+        position: absolute;
+        top: 50%;
+        left: 50%;
+        transform: translateX( -50% ) translateY( -50% );
+        box-shadow: 0 0 40px rgba(0,0,0,0.8);
+    }
+
+    h1 {
+        font-weight: 600;
+        font-size: 22px;
+        margin: 15px 0;
+    }
+
+    p {
+        line-height: 1.2em;
+        font-size: 16px;
+    }
+
+    .award-modal__icon img {
+        max-width: 120px;
+    }
+
+}

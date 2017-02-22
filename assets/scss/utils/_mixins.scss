@@ -1,0 +1,56 @@
+// write here your custom project mixins
+// write here your custom project mixins
+@mixin clearfix {
+  &:after {
+    content: "";
+    display: block;
+    height: 0;
+    clear: both;
+    visibility: hidden;
+  }
+}
+
+@mixin ellipsis {
+  white-space: nowrap;
+  overflow: hidden;
+  text-overflow: ellipsis;
+}
+
+@mixin no-ellipsis {
+  white-space: normal;
+  overflow: visible;
+  text-overflow: normal;
+}
+
+@mixin full-bg {
+  background: {
+    size: cover;
+    color: #ccc;
+    repeat: none;
+    position: 50% 50%;
+  }
+}
+
+@mixin vertical-align($position: relative) {
+
+    position: $position;
+    top: 50%;
+    transform: translateY(-50%);
+}
+
+@mixin horizontal-align { 
+	left: 50%;
+    transform: translateX(-50%);
+}
+
+@mixin reset-horizontal-align {
+	left:0;
+	transform: translateX(0);
+}
+
+@mixin reset-vertical-align($position: relative) {
+
+    position: $position;
+    top: 0;
+    transform: translateY(0);
+}

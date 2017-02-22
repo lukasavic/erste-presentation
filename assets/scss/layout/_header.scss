@@ -1,0 +1,101 @@
+.main-header {
+
+    /*
+
+        position: fixed;
+        top: 50%;
+        left: 50%;
+        min-width: 100%;
+        min-height: 100%;
+        width: auto;
+        height: auto;
+        z-index: 1;
+        -webkit-transform: translateX(-50%) translateY(-50%);
+        -moz-transform: translateX(-50%) translateY(-50%);
+        -ms-transform: translateX(-50%) translateY(-50%);
+        -o-transform: translateX(-50%) translateY(-50%);
+        transform: translateX(-50%) translateY(-50%);
+        background-size: cover;
+        transition: 1s opacity;
+
+    */
+
+    /*
+
+        position: fixed;
+        top: 0;
+        left: 0;
+        width: 100%;
+        height: 100%;
+
+    */
+
+    z-index: 300;
+    position: fixed;
+    width: 100%;
+    background-color: #fff;
+    box-shadow: 0 2px 20px rgba(0,0,0,0.3);
+
+    .main-header__inner {
+        position: relative;
+        padding: 15px 20px;
+        min-height: 100px;
+    }
+
+    .main-header__erste-logo  {
+
+        @include vertical-align(absolute);
+        left: 20px;
+        margin-top: -3px;
+
+        max-width: 160px;
+        img {
+            display: block;
+            height: auto;
+            display: block;
+            width: 100%;
+        }
+        
+    }
+
+    .main-header__site-logo {
+
+        &:before {
+            content: "";
+            width: 100%;
+            height: 100%;
+            background: #fff;
+            display: block;
+            border-radius: 100px;
+            position: absolute;
+            top:-2px;
+            left:0;
+            z-index: -1;
+        }
+
+        
+        display: block;
+        @include horizontal-align();
+        position: absolute;
+        z-index: 2;
+        width: 110px;
+        height: 110px;
+        margin-top: 4px;
+        border-radius: 100%;
+        background-color: #ddd;
+        text-align: center;
+        line-height: 110px;
+        font-weight: 800;
+        font-size: 48px;
+        text-transform: uppercase;
+        letter-spacing: -2px;
+        color: #615b5b;
+
+
+        span {
+            //color: #
+            margin:0 -4px;
+        }
+    }
+
+}

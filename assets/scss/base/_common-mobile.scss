@@ -1,0 +1,57 @@
+html {
+	background: #eef0ef;
+	font-family: $main-font;
+	color: $text-color;
+	font-size: 16px;
+	overflow-x: hidden;
+}
+
+body {
+	min-height: 100vh;
+}
+
+#app {
+
+}
+
+#wrap {
+	overflow-x: hidden;
+	//background: url('../img/pattern.jpg');
+}
+
+.container {
+	width: 100%;
+	max-width: 100%;
+	padding: 0 10px;
+	margin: 0 auto;
+}
+a {
+	color: $link-color;
+	text-decoration: none;
+	cursor: pointer;
+}
+.hidden {
+	display: none;
+}
+
+// some helpers
+.align-center {
+	text-align: center;
+}
+
+.align-left {
+	text-align: left;
+}
+
+.align-right {
+	text-align: right;
+}
+* { box-sizing: border-box; }
+
+
+
+.wrapper {
+	overflow: hidden;
+}
+
+

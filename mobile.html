@@ -1,0 +1,118 @@
+<html>
+	<head>
+		<meta charset="utf-8">
+		<meta name="viewport" content="width=device-width, initial-scale=1.0, user-scalable=no, minimal-ui">
+		<title>Erste Prezentacija</title>
+		<link href="https://fonts.googleapis.com/css?family=Open+Sans:400,400i,800" rel="stylesheet">
+		<link rel="stylesheet" href="/assets/css/mobile.css">
+	</head>
+	<body class="no-js">
+		<!-- eef0ef -->
+		<div class="wrapper">
+
+			<!-- #5bb089 -->
+			<header class="mobile-page-header">
+				<div class="container">
+					<h1>Nazovi Luku</h1>
+				</div>
+			</header>
+
+			
+
+			<div id="app">
+
+
+				<!-- main audio -->
+				<audio ref="msgAudio" id="main-sound" style="opacity:0;visibility:hidden;">
+					<source src="/assets/audio/msg.mp3" type="audio/mpeg">
+				</audio>
+				<!-- /main audio -->
+				
+				<!-- message-modal -->
+				<div class="message-modal" v-bind:class="{ '-active': msgModalOpen }">
+					<div class="message-modal__wrap">
+
+
+						<div class="message-modal__inner" v-if="currentMsg">
+							<h3>Nova Poruka od "{{ currentMsg.from }}"</h3>
+							<a href="#" v-on:click.prevent="showMsg()" class="message-modal__avatar">
+								<img src="/assets/img/icons/message.png" alt="">
+								<p>Pročitaj poruku</p>
+							</a>
+						</div>
+
+						<div  v-if="currentMsg" class="message-modal__msg" v-bind:class="{ '-active': msgOpen }">
+							<figure>
+								<img :src="currentMsg.img" alt="">
+								<figcaption>{{ currentMsg.title }}</figcaption>
+							</figure>
+
+							<div class="message-modal__msg__actions">
+								<button class="button" v-on:click.prevent="closeMsg()">Zatvori</button>
+								<button v-if="currentMsg.canShare" class="button" v-on:click.prevent="shareMsg()">Podjeli</button>
+							</div>
+						</div>
+
+					</div>
+
+				</div>
+
+				<!-- /message-modal -->
+
+				<div class="user-modal" v-bind:class="{ '-done': userModalDone }">
+					<div class="user-modal__inner">
+
+						<div class="user-modal__avatar">
+							<img src="/assets/img/demo/avatar.png" alt="">
+						</div>
+
+						<h3>Upiši svoje ime, plz!</h3>
+
+						<div class="user-modal__form">
+							<form v-on:submit.prevent="onSubmit" class="group">
+
+								<input v-model="userName" value="" type="text" required name="name" placeholder="Tvoje Ime">
+								<button type="submit">Završi</button>
+							</form>
+						</div>
+
+
+					</div>
+				</div>
+
+				<div class="call-modal" v-bind:class="{ '-calling': calling }">
+					<div class="call-modal__inner">
+
+						<div class="call-modal__avatar">
+							<img src="/assets/img/demo/luka.jpg" alt="">
+						</div>
+
+						<p v-if="currentItem">{{ currentItem.question }}</p>
+						<p v-if="busy" class="-is-busy">Korisnik je trenutno zauzet!</p>
+
+						<a class="call-modal__icon-phone" href="#" v-on:click.prevent="hangUp()"></a>
+
+					</div>
+				</div>
+
+				<section class="question-list">
+					<ul>
+						<li v-for="(item, index) in questions">
+							<a href="#" v-on:click.prevent="call(item)">
+								<span class="question-list__num">
+									{{index + 1}} 
+								</span>
+								<p>{{item.question}}</p>
+								<div class="question_list__checkbox" v-bind:class="{ '-done': item.asked }">
+									✓
+								</div>
+							</a>
+						</li>
+					</ul>
+				</section>
+
+			</div>
+		</div>
+		<script src="/assets/js/mobile.bundle.js"></script>
+	</body>
+</html>

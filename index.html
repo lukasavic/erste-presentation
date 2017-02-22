@@ -1,0 +1,120 @@
+<html>
+	<head>
+		<title>Erste Prezentacija</title>
+		<link href="https://fonts.googleapis.com/css?family=Open+Sans:400,400i,800" rel="stylesheet">
+		<link rel="stylesheet" href="/assets/css/style.css">
+	</head>
+	<body class="no-js">
+		<div class="wrapper">
+
+			<!-- header -->
+			<header class="main-header">
+				<div class="main-header__inner">
+					<div class="main-header__erste-logo">
+						<img src="/assets/img/art/erste-logo.png" alt="">
+					</div>
+					<h1 class="main-header__site-logo">
+						<span class="-first">L</span>
+						<span class="-second">S</span>
+					</h1>
+				</div>
+			</header>
+			<!-- /header -->
+
+			<div class="site-bg"></div>
+
+			<div id="app" v-bind:class="{ 
+					'app-loaded': appLoaded, 
+					'video-active': videoActive, 
+					'loading-new-video': loadingNewVideo, 
+					'new-video-active': newVideoActive 
+					}">
+
+				<!-- main audio -->
+				<audio loop="loop" ref="mainAudio" id="main-sound" style="opacity:0;visibility:hidden;">
+					<source src="/assets/audio/main.mp3" type="audio/mpeg">
+				</audio>
+				<!-- /main audio -->
+				
+				<!-- loading-video -->
+				<div class="loading-video">
+					<div class="loading-video__image">
+						<img src="/assets/img/art/loader.svg" alt="">
+						<span class="loading-video__info">Novi poziv od "<strong>{{callerName}}</strong>"</span>
+					</div>
+				</div>
+				<!-- /loading-video -->
+
+				<!-- loader -->
+				<div class="loader">
+					<div class="loader__wrap"></div>
+					<div class="loader__image">
+						<img src="/assets/img/art/loader.svg" alt="">
+					</div>
+					<span class="loader__prec">{{ mainVideoPrecentage }} %</span>
+					<span class="loader__info">Loading presentation</span>
+				</div>
+				<!-- /loader -->
+
+
+				<div class="award-modal" v-bind:class="{ '-active': awardModule }">
+					<div class="award-modal__inner">
+
+						<div class="award-modal__position">
+							<div class="award-modal__icon">
+								<img src="/assets/img/icons/award.png" alt="">
+							</div>
+
+							<h1>Award</h1>
+							<p> 
+								{{awardModule.username}} {{ awardModule.msg }}
+							</p>
+						</div>
+					</div>
+				</div>
+
+
+				<!-- app-videos -->
+				<div class="app-videos">
+					<div class="full-cover-video main-video" v-bind:class="{ active: videoActive }">
+
+						<video id="main-video"
+							ref="mainVideo"
+							loop="loop"
+							preload
+							class="vjs-tech" 
+							data-video-type="UVODNI_6" 
+							data-video-txt="UVODNI_6" 
+							controls="false">
+							 <source src="" type="video/mp4">
+						</video>
+						
+					</div>
+
+					<div class="full-cover-video -answer" v-bind:class="{ active: answerVideoActive }">
+
+						<video id="main-video-new"
+							ref="answerVideo"
+							preload="preload"
+							class="vjs-tech" 
+							data-video-type="UVODNI_6" 
+							data-video-txt="UVODNI_6" 
+							controls="false">
+							 <source src="" type="video/mp4">
+						</video>
+						
+					</div>
+				</div>
+				<!-- /app-videos -->
+
+			</div>
+
+			<!-- footer -->
+			<footer class="page-footer">
+				<p class="page-footer--disclaimer">All rights © 2017 <strong>not</strong> reserverd, do what you want!</p>
+			</footer>
+			<!-- /footer -->
+		</div>
+		<script src="/assets/js/main.bundle.js"></script>
+	</body>
+</html>

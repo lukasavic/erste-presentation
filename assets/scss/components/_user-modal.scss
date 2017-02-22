@@ -1,0 +1,62 @@
+.user-modal {
+    position: fixed;
+    top:0;
+    left:0;
+    width: 100%;
+    height: 100vh;
+    background: #eef0ef;
+    padding: 15px;
+    padding-top: 40px;
+    text-align: center;
+    z-index: 100;
+    transition: all 0.2s ease;
+    opacity: 1;
+    visibility: visible;
+
+
+    &.-done {
+        opacity: 0;
+        visibility: hidden;
+    }
+
+
+    .user-modal__avatar img {
+        width: 80px;
+        height: auto;
+        border-radius: 100%;
+        border: 4px solid #5bb089;
+    }
+
+    h3 {
+        font-size: 16px;
+        margin: 20px 0;
+        font-weight: 600;
+        text-shadow: 1px 1px 1px #fff;
+
+
+    }
+
+    .user-modal__form {
+        width: 300px;
+        margin: 0 auto;
+        input[type="text"] {
+            width: 100%;
+            padding: 10px;
+            font-size: 14px;
+            margin-bottom: 10px;
+
+        }
+
+        button {
+            -webkit-appearance: none;
+            border:0;
+            outline: 0;
+            background-color: #5bb089;
+            color: #fff;
+            font-size: 18px;
+            padding: 10px 20px;
+
+
+        }
+    }
+}

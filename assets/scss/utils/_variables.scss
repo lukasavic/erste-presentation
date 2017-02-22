@@ -1,0 +1,50 @@
+// Scaffolding
+// -------------------------
+$body-background:#000;
+$text-color: #6c6c6c;
+$header-color: #40444c;
+$gold-color: #8f7754;
+$dark-color: #222222;
+$light-color: #aba193;
+$active-color: #e9a065;
+
+$color-1: #434345;
+
+
+$break-large: 1280px;
+$break-large-x: 1020px;
+$break-tablet: 950px;
+$break-mobile: 864px;
+$break-mobile-xx: 768px;
+$break-mobile-x: 680px;
+$break-mobile-s: 590px;
+$break-mobile-sx: 480px;
+
+// Links
+// -------------------------
+$link-color: $text-color;
+$link-color-hover: darken($link-color, 20%);
+
+// global paddings
+$gutter: 20px;
+$gutterNum: 20;
+
+// Typography
+// Opens sans - main font
+// Logo font   - Trashhand
+// Hweader fonts - TrendRhSlabOne
+// decorator font - Milestone
+//
+// -------------------------
+$main-font: 'Open Sans', Helvetica, sans-serif;
+$logo-font: 'trashhandregular', Helvetica, sans-serif;
+$slab-font: 'Roboto Slab', Helvetica, sans-serif;
+$decorator-font: 'milestoneregular', Helvetica, sans-serif;
+$swash-font: 'milestone_swashesregular', sans-serif;
+$serif-font-family: Georgia, 'Times New Roman', Times, serif;
+$font-size: 30px;
+
+
+// easings
+$easing-1: cubic-bezier(0.25, 0.46, 0.45, 0.94);
+$easing-2: cubic-bezier(0.42,0.22,0.31,0.88);

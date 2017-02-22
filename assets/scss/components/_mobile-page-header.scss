@@ -1,0 +1,33 @@
+.mobile-page-header {
+    color: #fff;
+    text-transform: uppercase;
+    text-align: center;
+    background-color: #5bb089;
+    position: relative;
+
+    h1 {
+        color: #fff;
+        font-size: 15px;
+        letter-spacing: 1px;
+        // eef0ef
+    }
+
+    .container {
+        padding-top: 15px;
+        padding-bottom: 15px;
+    }
+
+    &:before {
+        content: "";
+        width: 0;
+        height: 0;
+        border-style: solid;
+        border-width: 0 10px 10px 10px;
+        border-color: transparent transparent #eef0ef transparent;
+        position: absolute;
+        z-index: 10;
+        left: 50%;
+        margin-left: -5px;
+        bottom:0;
+    }
+}

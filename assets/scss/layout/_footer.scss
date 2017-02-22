@@ -1,0 +1,18 @@
+.page-footer {
+    position: fixed;
+    border-top: 1px solid #7dbdda;
+    background: #bce4fa;
+    color: #0078b4;
+    padding: 20px;
+    text-align: center;
+    font-size: 12px;
+    width: 100%;
+    bottom:0;
+    left:0;
+    font-weight: 500;
+    z-index: 300;
+
+    p {
+        color: #0078b4;
+    }
+}

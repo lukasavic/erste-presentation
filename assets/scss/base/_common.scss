@@ -1,0 +1,301 @@
+html {
+	background: $body-background;
+	font-family: $main-font;
+	color: $text-color;
+	font-size: 16px;
+	overflow: hidden;
+}
+
+body {
+	min-height: 100vh;
+	background: #000;
+}
+.site-bg {
+	position: fixed;
+	top:0; 
+	left:0;
+	width: 100%;
+	min-height: 100vh;
+	background: #000 url(../img/bg/erste.jpg)  50% 50% no-repeat;
+	background-size: cover;
+	filter: blur(5px);
+	z-index: 1;
+
+	&:before {
+		content: "";
+		display: block;
+		position: absolute;
+		top:0;
+		left:0;
+		width: 100%;
+		height: 100%;
+		background: rgba(0,0,0,0.25);
+	}
+}
+
+#app {
+	position: relative;
+	width: 100%;
+	height: 100vh;
+	z-index: 1;
+}
+
+#wrap {
+	overflow-x: hidden;
+	//background: url('../img/pattern.jpg');
+}
+
+.-swash {
+	&:before {
+		content: "q";
+		font-size: 28px;
+		position: absolute;
+		display: inline-block;
+		font-family: $swash-font;
+		bottom: -8px;
+		left: 50%;
+		transform: translateX(-60%);
+	}
+}
+
+
+svg path,
+svg circle {
+	fill-opacity: 0;
+	stroke-dasharray: 4000;
+	stroke-dashoffset: 4000;
+	//stroke: #8f7754;
+	stroke:#f2e4cb;
+	fill: #f2e4cb;
+	stroke-width: 14;
+	stroke-opacity: 0;
+
+	/*
+	-webkit-animation: draw 3.8s forwards;
+	transition: all 3.8s ease;
+	animation: draw 3.8s ease;
+	*/
+
+	animation-timing-function: ease-in;
+	animation-fill-mode: forwards;
+	animation-iteration: 1;
+}
+
+
+svg.snake path {
+	stroke: #e9a065;
+	stroke-opacity: 1;
+	stroke-width: 7;
+}
+
+svg.snake-2 path {
+	stroke: #e9a065;
+	stroke-opacity: 1;
+	stroke-width: 3;
+}
+
+
+.in-view {
+	svg path,
+	svg circle {
+		//fill: #fff;
+		//fill: rgba(255,255,255,0);
+
+		/*
+		animation-name: DrawLine, FillIn, FadeStroke;
+		animation-duration: 4.8s, 1s, 1s;
+		animation-delay: 0s, 4s, 4s;
+		*/
+		animation-name: DrawLine, FadeStroke;
+		animation-duration: 3.6s, 0.8s;
+		animation-delay: 0.8s, 0.8s;
+	}
+
+	svg.snake-2 path {
+		animation-delay: 3.8s, 1s;
+		animation-duration: 8.8s, 0.8s;
+		animation-timing-function: $easing-2;
+	}
+
+	svg.snake path {
+		animation-delay: 3.8s, 1s;
+		animation-duration: 8.8s, 0.8s;
+		animation-timing-function: $easing-2;
+	}
+
+	svg circle.c-1 {
+		stroke-opacity: 1;
+		stroke-dasharray: 4000;
+		stroke-dashoffset: -4000;
+		animation-timing-function: ease-in-out;
+		animation-fill-mode: forwards;
+		animation-iteration: 1;
+
+		animation-name: DrawLine;
+		animation-duration: 2.4s;
+		animation-delay: 0s;
+	}
+
+	svg circle.c-2 {
+		stroke-opacity: 1;
+		stroke-dasharray: 4000;
+		stroke-dashoffset: 4000;
+		animation-timing-function: ease-in-out;
+		animation-fill-mode: forwards;
+		animation-iteration: 1;
+
+		animation-name: DrawLine;
+		animation-duration: 2.8s;
+		animation-delay: 0s;
+	}
+}
+
+@keyframes DrawLine {
+	to { stroke-dashoffset: 0; }
+}
+@keyframes FadeStroke {
+	to { stroke-opacity: 1; }
+}
+
+/*
+@keyframes FillIn {
+	from { fill-opacity: 0; }
+    to { fill-opacity: 1; }
+}
+
+@keyframes DrawLine {
+	to { stroke-dashoffset: 0; }
+}
+@keyframes FadeStroke {
+	to { stroke-opacity: 0; }
+}
+
+
+/*
+svg g path {
+	font-family: $decorator-font;
+	//fill: #fff;
+	font-size: 270px;
+	stroke: #fff;
+	fill: rgba(255,255,255,0);
+
+	stroke-dasharray: 10;
+	stroke-dashoffset: 10;
+	-webkit-animation: draw 4.4s forwards;
+	transition: all 4.4s ease;
+}
+
+
+@-webkit-keyframes draw {
+	100% {
+	stroke-dashoffset: 0;
+	//fill-opacity:1;
+	}
+}
+
+@-webkit-keyframes draw {
+100% {
+stroke-dashoffset: 0;
+}
+}
+@-moz-keyframes draw {
+100% {
+stroke-dashoffset: 0;
+}
+}
+@-o-keyframes draw {
+100% {
+stroke-dashoffset: 0;
+}
+}
+@-ms-keyframes draw {
+100% {
+stroke-dashoffset: 0;
+}
+}
+@keyframes draw {
+100% {
+stroke-dashoffset: 0;
+}
+}
+*/
+
+.container {
+	width: 100%;
+	max-width: 1090px;
+	padding: 0 10px;
+	margin: 0 auto;
+
+	@include breakpoint(max-width $break-tablet) {
+		padding: 0 30px;
+	}
+}
+a {
+	color: $link-color;
+	text-decoration: none;
+	cursor: pointer;
+}
+.hidden {
+	display: none;
+}
+
+// some helpers
+.align-center {
+	text-align: center;
+}
+
+.align-left {
+	text-align: left;
+}
+
+.align-right {
+	text-align: right;
+}
+* { box-sizing: border-box; }
+
+
+
+.wrapper {
+	overflow: hidden;
+}
+// wrapper animation
+.page-section.added {
+	position:absolute;
+	top:0;
+	left:0;
+	width:100%;
+	z-index:100;
+	overflow: hidden;
+	max-height: 100vh;
+	background-color:#fff;
+}
+.page-section.added {
+
+}
+
+.no-cssmask {
+	.page-section  {
+		transition: opacity 0.5s ease, visibility 0.5s ease;
+		opacity: 1;
+		visibility: visible;
+	}
+	.page-section.added {
+		opacity: 0;
+		visibility: hidden;
+	}
+
+	.page-section.-fade {
+		opacity: 0;
+		visibility: hidden;
+	}
+
+}
+
+.cssmask .page-section.added {
+	mask: url("../img/demo/transition.png");
+	mask-size: 1300% 100%;
+	mask-position: 0 0;
+	-webkit-animation: mask-play 0.8s steps(12) 0s both;
+	animation: mask-play 0.8s steps(12) 0s both;
+	animation-delay: 1s;
+}

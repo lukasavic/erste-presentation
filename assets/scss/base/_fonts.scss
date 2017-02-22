@@ -1,0 +1,46 @@
+/* FONTS */
+@font-face {
+    font-family: 'milestone_swashesregular';
+    src: url('../fonts/milestone_swashes.woff2') format('woff2'),
+         url('../fonts/milestone_swashes.woff') format('woff');
+    font-weight: normal;
+    font-style: normal;
+
+}
+
+@font-face {
+    font-family: 'milestoneregular';
+    src: url('../fonts/milestone.woff2') format('woff2'),
+         url('../fonts/milestone.woff') format('woff');
+    font-weight: normal;
+    font-style: normal;
+}
+
+@font-face {
+    font-family: 'slaberlinregular';
+    src: url('../fonts/slaberlin.regular.woff2') format('woff2'),
+         url('../fonts/slaberlin.regular.woff') format('woff');
+    font-weight: normal;
+    font-style: normal;
+
+}
+
+@font-face {
+    font-family: 'trashhandregular';
+    src: url('../fonts/TrashHand-webfont.eot');
+    src: url('../fonts/TrashHand-webfont.eot?#iefix') format('embedded-opentype'),
+         url('../fonts/TrashHand-webfont.woff') format('woff'),
+         url('../fonts/TrashHand-webfont.ttf') format('truetype'),
+         url('../fonts/TrashHand-webfont.svg#trashhandregular') format('svg');
+    font-weight: normal;
+    font-style: normal;
+
+}
+
+@font-face {
+  font-family: 'TrendRhSlabOne';
+  src: url('../fonts/TrendRhSlabOne.eot?#iefix') format('embedded-opentype'),  url('../fonts/TrendRhSlabOne.otf')  format('opentype'),
+	     url('../fonts/TrendRhSlabOne.woff') format('woff'), url('../fonts/TrendRhSlabOne.ttf')  format('truetype'), url('../fonts/TrendRhSlabOne.svg#TrendRhSlabOne') format('svg');
+  font-weight: normal;
+  font-style: normal;
+}
