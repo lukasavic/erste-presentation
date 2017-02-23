@@ -11,10 +11,20 @@ let store = {
     socketId: null
 }
 
-socket.on('disconnect', () => {
-    socket.socket.reconnect();
+
+socket.on('error', function (e) {
+    socket.disconnect();
+    setTimeout(function () {
+        socket.connect();
+    }, 1000);
 });
 
+setInterval( () => { 
+    if( socket.connected == false ) {
+        socket.disconnect();
+        socket.connect();
+    }
+}, 1000)  ;
 socket.on('initNewDevice', function (socketId) { 
     store.socketId = socketId;
 });
@@ -44,6 +54,7 @@ window.app = new Vue({
         msgOpen: false,
         currentMsg: false,
         busy: false,
+        masterTimeout: undefined
     },
 
     mounted: function() {
@@ -64,7 +75,7 @@ window.app = new Vue({
 
              socket.on('masterIsBusy', (data) => {
                  this.busy = true;
-                 setTimeout(() => {
+                 this.masterTimeout = setTimeout(() => {
                     this.removeCallModal();
                  }, 3500);
              });
@@ -93,7 +104,7 @@ window.app = new Vue({
         },
 
         call( item ) {
-        
+            clearTimeout(this.masterTimeout);
             this.currentItem = item;
             socket.emit('onQuestion', { socketId: store.socketId, videoId: item.id, username: this.userName });
             this.calling = true;
@@ -136,7 +147,7 @@ window.app = new Vue({
             this.currentMsg.canShare = false
             this.currentMsg.from = this.userName;
             socket.emit('sendMsgAll', this.currentMsg );
-            this.closeMsg();
+           // this.closeMsg();
 
         }
 

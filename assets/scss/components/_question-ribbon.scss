@@ -1,0 +1,19 @@
+.question-ribbon {
+    position: absolute;
+    background-color: #004d9f;
+    z-index: 999;
+    position: fixed;
+    bottom: 110px;
+    color: #fff;
+    font-size: 18px;
+    padding: 20px 20px;
+    box-shadow: 0 0 19px rgba(0,0,0,0.5);
+    transition: all 0.3s ease;
+    transform: translateX(-105%);
+
+
+    .new-video-active & {
+       transition-delay: 1s;
+       transform: translateX(0); 
+    }
+}

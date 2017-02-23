@@ -1,4 +1,4 @@
-// Simple server
+"use strict";
 
 const express = require('express');
 const app = express(); 
@@ -7,12 +7,24 @@ const http = require('http').createServer(app);
 const io = require('socket.io')(http);
 const redis = require("redis");
 const redisClient = redis.createClient();
+const MobileDetect = require('mobile-detect');
 
-app.use('/', express.static(path.join(__dirname + '/')));
+app.use('/assets', express.static(path.join(__dirname + '/assets')));
 
 app.get('/', function(req, res){
+  let md = new MobileDetect(req.headers['user-agent']);
+  console.log( typeof null);
+  if( md.mobile() != null ) {
+    res.sendFile( __dirname + '/mobile.html' );  
+  } else {
     res.sendFile( __dirname + '/index.html' );
+  }
 });
+
+app.get('/mobile', function(req, res){
+    res.sendFile( __dirname + '/mobile.html' );
+});
+
 
 
 io.on('connection', function(socket){
@@ -39,7 +51,6 @@ io.on('connection', function(socket){
     });
 
   });
-
 
   // when video ends
   socket.on('userVideoEnded', function(msg){
@@ -87,10 +98,6 @@ io.on('connection', function(socket){
 });
 
 
-app.get('/mobile', function(req, res){
-    res.sendFile( __dirname + '/mobile.html' );
-});
-
-http.listen(3001, function(){
-    console.log( 'listen on *: 3001' );
+http.listen(8080, function(){
+    console.log( 'listen on *: 8080' );
 });

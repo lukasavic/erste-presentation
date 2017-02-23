@@ -46,7 +46,7 @@
 				<!-- /loading-video -->
 
 				<!-- loader -->
-				<div class="loader">
+				<div v-if="isReady" class="loader">
 					<div class="loader__wrap"></div>
 					<div class="loader__image">
 						<img src="/assets/img/art/loader.svg" alt="">
@@ -55,6 +55,12 @@
 					<span class="loader__info">Loading presentation</span>
 				</div>
 				<!-- /loader -->
+
+				<div class="question-ribbon" v-if="currentVideo">
+					<div class="question-ribbon__inner">
+						<p><strong>{{callerName}}</strong> : "{{currentVideo.question}}"</p>
+					</div>
+				</div>
 
 
 				<div class="award-modal" v-bind:class="{ '-active': awardModule }">

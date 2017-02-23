@@ -22,8 +22,9 @@ socket.on('connect', () => {
 var app = new Vue({
     el: '#app',
     data: {
+        isReady: false,
         message: 'Hello Vue!',
-        defaultVolume: 0.5,
+        defaultVolume: 1,
         countQuestions: 0,
         awardModule: false,
         busy: false,
@@ -31,16 +32,19 @@ var app = new Vue({
         appLoaded: false,
         endTimeOut: undefined,
         startTimeOut: undefined,
+        helperTimeout: undefined,
         videoInterval: undefined,
         watchVideoInterval: undefined,
         videos: videos,
         callerName: "",
+        currentVideo: false,
         callerSocketId: false,
         loadingNewVideo: false,
         newVideoActive: false,
         videoActive: false,
         answerVideoActive: false,
         mainVideoPrecentage: 0,
+        mainVolume: 0.3,
         mainVideoSrc: '/assets/h264/intro-video.mp4' // '/assets/videos/video-1.mp4'
     },
 
@@ -61,9 +65,9 @@ var app = new Vue({
             body.classList.remove('no-js');
             body.classList.add('js');
             this.$refs.answerVideo.volume = 0;
-
             this.loadFirstVideo();
             this.setupSockets();
+            this.isReady = true;
 
         },
 
@@ -78,21 +82,23 @@ var app = new Vue({
             });
 
             socket.on('newQuestion',  (data) => {
-
-                this.callerName = data.username;
-                this.callerSocketId = data.socketId;  
-                this.countQuestions++;
-
-                if( this.busy === true || this.hold === true ) {
+                
+                if( this.busy === true ) {
                     socket.emit('masterBusy', { socketId: data.socketId });
                     return; 
                 }
-
+                
+                this.countQuestions++;
                 this.busy = true;
+                this.callerName = data.username;
+                this.callerSocketId = data.socketId;  
+
 
                 let theVideo = this.videos.find((item) => {
                     return item.id == data.videoId;
                 });
+
+                this.currentVideo = theVideo;
 
                 this.loadNewVideo( theVideo, () => {
 
@@ -101,11 +107,13 @@ var app = new Vue({
                     if( theVideo.hasOwnProperty('msg') ) {
                         theVideo.msg.emited = false;
                     }
+
                     this.watchVideo(data, theVideo);
 
-                    setTimeout(() => {
+                    this.helperTimeout = setTimeout (() => {
+                        this.dimmSoundDown(0);
 
-                        this.$refs.answerVideo.volume = 0.5;
+                        this.$refs.answerVideo.volume = 1;
                         this.newVideoActive = true; 
                         this.loadingNewVideo = false;
                         this.$refs.mainVideo.pause();
@@ -158,13 +166,18 @@ var app = new Vue({
 
         endVideo(data, theVideo) {
        
+        console.log( 'Is Paused', this.$refs.answerVideo.paused );
 
-            this.endTimeOut = setTimeout( () => {
+        this.endTimeOut = setTimeout( () => {
             this.hold = true;
 
             if( data.socketId != this.callerSocketId ) {
                 return;
             }
+
+            //if( this.thisHe != undefined ) {
+            clearTimeout( this.helperTimeout );
+            //}
 
             if( this.endTimeOut != undefined ) {
                 clearTimeout( this.endTimeOut );
@@ -183,24 +196,22 @@ var app = new Vue({
             }
 
                 this.$refs.mainVideo.play();
-                this.dimmSoundUp(0.5);
+                setTimeout(() => this.dimmSoundUp(this.mainVolume), 200 );
+                
 
                 this.newVideoActive = false; 
                 this.loadingNewVideo = false;
+
                 this.fadeInVideoSound(this.$refs.mainVideo);
-                this.fadeOutVideoSound(this.$refs.answerVideo); 
-
                 this.fadeOutVideoSound(this.$refs.answerVideo, () => {
-                    
-                    this.$refs.answerVideo.pause();
-
+            
                     if( this.countQuestions == 1 ) {
 
                         this.showAward( { username: this.callerName, msg: " je osvojio/la nagradu za prvo postavljeno pitanje!" } );
                         
                     }  else {
 
-                        // if video has award in it.
+
                         console.log( theVideo );
                         if( theVideo != undefined && theVideo.hasOwnProperty('award') && theVideo.award.valid == true ) {
                            
@@ -213,24 +224,17 @@ var app = new Vue({
                             this.hold = false;
 
                         }
-
-
                     }
-
-
                 });
 
-                //console.log('4444');
-
             }, 0 );
-            //console.log('3333');
+
         },
 
         loadNewVideo(newVideo, callback ) {
             this.newVideoActive = false;
             let answerVideo = this.$refs.answerVideo;
 
-            this.dimmSoundDown(0);
             this.fadeOutVideoSound(this.$refs.mainVideo);
             this.loadingNewVideo = true;
             answerVideo.volume = 0;
@@ -270,10 +274,6 @@ var app = new Vue({
                 }
 
             }, 200 );
-
-
-
-
         },
 
         loadFirstVideo() {
@@ -318,7 +318,7 @@ var app = new Vue({
                             mainVideo.play();
 
                             
-                            this.$refs.mainAudio.volume = 0.5;
+                            this.$refs.mainAudio.volume = this.mainVolume;
                             this.$refs.mainAudio.play();
                             
 
@@ -331,10 +331,9 @@ var app = new Vue({
         },
 
         dimmSoundDown(value, callback) {
-
             let audio = this.$refs.mainAudio;
             let vol = audio.volume;
-            let interval = 200;
+            let interval = 180;
             let fadeout = setInterval(
             function() {
                 if (vol > value) {
@@ -353,7 +352,7 @@ var app = new Vue({
         },
 
         dimmSoundUp( value, callback) {
-
+            //value = 0.3; // rewrite
             var audio = this.$refs.mainAudio;
             var vol = audio.volume;
             var interval = 200;
@@ -380,13 +379,13 @@ var app = new Vue({
             var selVideo = videoRef;
             var vol = selVideo.volume;
 
-            var interval = 120;
+            var interval = 110;
             var fadein = setInterval(
             function() {
-                if ( vol < 0.55  ) {
+                if ( vol < 1  ) {
                 vol += 0.05;
-                if( vol >= 0.55 ) {
-                    vol = 0.55;
+                if( vol >= 1 ) {
+                    vol = 1;
                 }
                 selVideo.volume = vol;
                 }
