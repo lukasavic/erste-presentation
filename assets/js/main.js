@@ -72,7 +72,8 @@ var app = new Vue({
 
             // also hack
             setInterval(() => {
-                if( this.$refs.mainVideo != paused && this.$refs.mainAudio.volume == 0 ) {
+                if( this.$refs.mainVideo.paused != false && this.$refs.mainAudio.volume == 0 ) {
+                    console.log('try to fix the volume');
                     this.dimmSoundUp(this.mainVolume);
                 }
             }, 1500);
