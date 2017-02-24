@@ -87,11 +87,12 @@ var app = new Vue({
                     socket.emit('masterBusy', { socketId: data.socketId });
                     return; 
                 }
-                
+
                 this.countQuestions++;
                 this.busy = true;
                 this.callerName = data.username;
                 this.callerSocketId = data.socketId;  
+                this.awardModule = false; 
 
 
                 let theVideo = this.videos.find((item) => {
@@ -179,13 +180,17 @@ var app = new Vue({
             clearTimeout( this.helperTimeout );
             //}
 
+            /*
             if( this.endTimeOut != undefined ) {
                 clearTimeout( this.endTimeOut );
             }
+            */
 
+            /*
             if( this.startTimeOut != undefined ) {
                 clearTimeout( this.startTimeOut );
             }
+            */
 
             if( this.videoInterval != undefined ) {
                 clearInterval( this.videoInterval );
