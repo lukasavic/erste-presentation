@@ -69,6 +69,14 @@ var app = new Vue({
             this.setupSockets();
             this.isReady = true;
 
+
+            // also hack
+            setInterval(() => {
+                if( this.$refs.mainVideo != paused && this.$refs.mainAudio.volume == 0 ) {
+                    this.dimmSoundUp(this.mainVolume);
+                }
+            }, 1500);
+
         },
 
         setupSockets() {
