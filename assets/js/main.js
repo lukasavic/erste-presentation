@@ -331,7 +331,7 @@ var app = new Vue({
                             console.log(mainVideo);
                             mainVideo.play();
 
-                            
+                            this.$refs.mainAudio.currentTime = 5;
                             this.$refs.mainAudio.volume = this.mainVolume;
                             this.$refs.mainAudio.play();
                             
