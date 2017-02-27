@@ -7,6 +7,14 @@
     padding: 0 20px;
     z-index: 500;
     text-align: center;
+    opacity: 1;
+    visibility: visible;
+    transition: opacity 0.5s ease, visibilty 0.5s ease;
+
+    .no-js & {
+        opacity: 0;
+        visibility: hidden; 
+    }
 
     .loader__prec {
         position: absolute;

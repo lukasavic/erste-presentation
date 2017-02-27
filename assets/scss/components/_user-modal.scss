@@ -13,6 +13,17 @@
     opacity: 1;
     visibility: visible;
 
+    .user-modal__inner {
+        opacity: 1;
+        visibility: visible;
+        transition: opacity 0.5s ease, visibilty 0.5s ease;
+
+        .no-js & {
+            opacity: 0;
+            visibility: hidden;
+        }
+    }
+
 
     &.-done {
         opacity: 0;

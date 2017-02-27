@@ -64,6 +64,7 @@ window.app = new Vue({
     methods: {
 
         init() {
+            $('body').removeClass('no-js').addClass('js');
             //this.currentItem = this.questions[0];
             console.log('working');
              socket.on('askedQuestion', (data) => {

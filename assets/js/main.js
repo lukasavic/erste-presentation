@@ -59,7 +59,7 @@ var app = new Vue({
     methods: {
 
         init() {
-            
+            $('body').removeClass('no-js').addClass('js');
             // setup the stuff with 
             const body = document.body;
             body.classList.remove('no-js');
