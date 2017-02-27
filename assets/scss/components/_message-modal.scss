@@ -11,6 +11,9 @@
     transition: all 0.28s ease;
     opacity: 0;
     visibility: hidden;
+    background: #00bcd4;
+    height: 100vh;
+
 
 
     &.-active {
@@ -89,6 +92,8 @@
 
         figure {
             box-shadow: 0 2px 10px rgba(0,0,0,0.3);
+            max-width: 320px;
+            display: inline-block;
         }
 
         img {

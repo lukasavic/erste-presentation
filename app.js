@@ -13,16 +13,15 @@ app.use('/assets', express.static(path.join(__dirname + '/assets')));
 
 app.get('/', function(req, res){
   let md = new MobileDetect(req.headers['user-agent']);
-  console.log( typeof null);
-  if( md.mobile() != null ) {
-    res.sendFile( __dirname + '/mobile.html' );  
-  } else {
-    res.sendFile( __dirname + '/index.html' );
-  }
+  res.sendFile( __dirname + '/mobile.html' );  
 });
 
 app.get('/mobile', function(req, res){
     res.sendFile( __dirname + '/mobile.html' );
+});
+
+app.get('/main', function(req, res){
+    res.sendFile( __dirname + '/index.html' );
 });
 
 
@@ -55,6 +54,7 @@ io.on('connection', function(socket){
   // when video ends
   socket.on('userVideoEnded', function(msg){
     io.to(msg.socketId).emit( 'userVideoEnded', msg );
+    io.emit( 'askedQuestion', msg );
   });
 
   // controll the messages
@@ -79,8 +79,6 @@ io.on('connection', function(socket){
 
   // send message to main page 
   socket.on('onQuestion', function(msg){
-
-    io.emit( 'askedQuestion', msg );
 
     redisClient.get("masterID", function(err, reply){
 

@@ -10,6 +10,7 @@
     opacity: 1;
     visibility: visible;
     transition: opacity 0.5s ease, visibilty 0.5s ease;
+    pointer-events: none;
 
     .no-js & {
         opacity: 0;
